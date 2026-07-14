@@ -1,2 +1,13 @@
 const mongoose = require('mongoose');
-console.log("Database connection configurations are ready.");
+
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/courseManagement');
+    console.log(`MongoDB Connected successfully!`);
+  } catch (error) {
+    console.error(`Database connection error: ${error.message}`);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
